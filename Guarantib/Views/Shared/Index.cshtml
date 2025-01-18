@@ -1,0 +1,162 @@
+﻿@{
+    ViewData["Title"] = "Garantib's";
+}
+
+<style>
+
+    h1, h4 {
+        text-align: center;
+    }
+
+    
+    .col-sm-4 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+    }
+
+    .flip-card {
+        background-color: transparent;
+        width: 190px;
+        height: 254px;
+        perspective: 1000px;
+        font-family: sans-serif;
+    }
+
+    .title {
+        font-size: 1.5em;
+        font-weight: 900;
+        text-align: center;
+        margin: 0;
+    }
+
+    .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+    }
+
+    .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+    }
+
+    .flip-card-front, .flip-card-back {
+        box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2);
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border: 1px solid coral;
+        border-radius: 1rem;
+    }
+
+    .flip-card-front {
+        background: linear-gradient(120deg, bisque 60%, rgb(255, 231, 222) 88%, rgb(255, 211, 195) 40%, rgba(255, 127, 80, 0.603) 48%);
+        color: coral;
+    }
+
+    .flip-card-back {
+        background: linear-gradient(120deg, rgb(255, 174, 145) 30%, coral 88%, bisque 40%, rgb(255, 185, 160) 78%);
+        color: white;
+        transform: rotateY(180deg);
+    }
+
+    .position-relativeSize {
+        height: 300px; /* Ajustez cette valeur selon vos besoins */
+    }
+    
+    .taille{
+        font-size:2em;
+    }
+
+    .col-sm-4{
+        margin-bottom:15px;
+    }
+
+
+</style>
+
+<div class="text-center">
+    <h1 class="display-4">accueil</h1>
+</div>
+<br />
+
+<div class="position-relative position-relativeSize">
+        <div class="col-6">
+           <p class="position-absolute top-0 start-50 translate-middle" style="color: steelblue;">Statistique générale:</p>
+        <br />
+       
+
+            <p class="position-absolute top-0 start-0 taille"><span style="color: #9AAACC;">Produits non clôturés :</span><span style="color: red;"> @ViewBag.NonClosedProductsCount</span></p>
+
+        <p class="position-absolute top-50 start-0 taille"><span style="color: #9AAACC;">Produits dont la garantie est inférieure à 2 semaines :</span> <span style="color: red;">@ViewBag.ApproachingEndDateProductsCount</span></p>
+            
+           
+        </div>
+    </div>
+
+
+
+<div id="descri">
+    <p class="paragraph1" id="paragraph">Description </p>
+    <p class="paragraph2">
+        L'application Guarantees est un outil de suivi des garanties en ligne pour l'entreprise Tibco.
+        Elle permet de suivre l'état des produits reçus, l'état de la garantie et le suivi de l'intervention.
+    </p>
+</div>
+<br />
+<h4>Clients</h4>
+<div >
+    <hr />
+    <br />
+    
+    @if (Model != null)
+    {
+        <div class="container">
+            <div class="row">
+
+                @foreach (var client in Model)
+                {
+                    <div class="col-sm-4">
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <p class="title">@client.Name</p>
+                                    <p> <span style="color: #9AAACC;">Nb produits liés:</span>
+                                        <span style="color: red;">@ViewBag.ClientProductCounts[client.Id]</span>
+                                    </p>
+                                </div>
+                                <div class="flip-card-back">
+                                    <p class="title">Ses produits</p>
+                                    <p>
+                                        <a asp-controller="Produits" class="lien" asp-action="GetProduitsByClient" asp-route-id="@client.Id">
+                                            Ses produits 
+                                            </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                   
+                   
+                }
+
+            </div>
+        </div>
+    }
+    else
+    {
+        <p>Aucun client disponible.</p>
+    }
+
+</div>
+
+

@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Guarantib's</title>
+    <link rel="icon" href="~/images/logo tibco.png" type="image/png">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Guarantib.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  box-shadow mb-3">
+           
+            <div class="container-fluid">
+                <img src="~/images/logo tibco.png" alt="logo" />
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" id="guarantib-link">Guarantib's</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+
+                    <ul class="navbar-nav flex-grow-1">
+
+                        <li class="nav-item">
+                            <button class="nav-link text-light button btn w-100" onclick="location.href='@Url.Action("GetisNotClose", "Produits")'">Produit en Cours</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link text-light button btn w-100" onclick="location.href='@Url.Action("Create", "Produits")'">Ajouter un produit</button>
+                        </li>
+
+                        <li class="nav-item">
+                            <button class="nav-link text-light button btn w-100" onclick="location.href='@Url.Action("GetisClose", "Produits")'">Historique des produits</button>
+                        </li>
+
+                        <li class="nav-item ">
+                            <button class="nav-link text-dark  logout-btn btn w-100" onclick="location.href='@Url.Action("LogOut", "Home")'">Déconnexion du profil</button>
+                        </li>
+
+                        <li class="nav-item ">
+                            <div class="messageBox row w-100  position-relative">
+                                <form action="@Url.Action("GetBySerie", "Produits")" method="get" class="d-flex align-items-center">
+                                    <div class="col-auto">
+                                        <input required="" placeholder="N° de série..." type="text" name="search" id="messageInput" />
+                                    </div>
+                                    <div class="col-auto position-absolute top-50 end-0 translate-middle-y">
+                                        <button type="submit" id="sendButton">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 664 663">
+                                                <path fill="none" d="M646.293 331.888L17.7538 17.6187L155.245 331.888M646.293 331.888L17.753 646.157L155.245 331.888M646.293 331.888L318.735 330.228L155.245 331.888"></path>
+                                                <path stroke-linejoin="round" stroke-linecap="round" stroke-width="33.67" stroke="#6c6c6c" d="M646.293 331.888L17.7538 17.6187L155.245 331.888M646.293 331.888L17.753 646.157L155.245 331.888M646.293 331.888L318.735 330.228L155.245 331.888"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+
+
+
+                    </ul>
+                    
+                    
+
+
+                </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <button class="option" onclick="location.href='@Url.Action("Menu", "Home")'">Menu</button>
+    </div>
+
+    
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+
+        <div class="container">
+
+            <author>
+                Adam Stitou
+            </author>
+          
+          &copy; 2024 - Guarantib - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            
+        </div>
+    </footer>
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

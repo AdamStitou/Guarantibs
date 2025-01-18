@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Guarantib.Models.Professionnel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Profils</h1>
+
+<p>
+    <a asp-action="Register">Enregistrer vous</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @* @Html.DisplayNameFor(model => model.Name) *@Nom
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.job) *@emploie
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.KeepLoggedIn) *@ Admin
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.job)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KeepLoggedIn)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Modifier</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Supprimer</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

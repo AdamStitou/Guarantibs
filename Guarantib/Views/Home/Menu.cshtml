@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewData["Title"] = "Menu";
+}
+
+<style>
+
+
+    h1{
+        text-align: center;
+    }
+    h4{
+        margin-left:20%;
+        
+        text-decoration: underline;
+    }
+    li{
+        background-color: #FFA500;
+        margin:1%;
+        border-radius:10px;
+    }
+</style >
+
+<div class="container">
+    <h1>Menu </h1>
+    <br />
+    <h4>Produit :</h4>
+    <br />
+    <br />
+        <ul class="nav justify-content-center">
+
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Produits" asp-action="GetisNotClose">Produit en Cours</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Produits" asp-action="Create">Ajouter un produit</a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Produits" asp-action="GetisClose">Historique</a>
+            </li>
+           
+        </ul>
+    <br />
+    <h4>Client :</h4>
+    <br />
+    <br />
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Clients" asp-action="Index">Clients</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Clients" asp-action="Create">Ajouter un Client</a>
+        </li>
+    </ul>
+    <br />
+    <h4>Marque :</h4>
+    <br />
+    <br />
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Marques" asp-action="Index">Clients</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Marques" asp-action="Create">Ajouter un Client</a>
+        </li>
+    </ul>
+    <br />
+    <h4>Profils :</h4>
+    <br />
+    <br />
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Access" asp-action="Menu">Profils</a>
+        </li>
+    </ul>
+    <br />
+    <h4>Suivis :</h4>
+    <br />
+    <br />
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Suivis" asp-action="Index">Tous les suivis</a>
+        </li>
+        
+        
+    </ul>
+
+</div>

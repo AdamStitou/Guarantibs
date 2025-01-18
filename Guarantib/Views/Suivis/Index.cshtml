@@ -1,0 +1,98 @@
+﻿@model  IEnumerable<Guarantib.Models.Suivis> 
+@inject Guarantib.Models.GuarantibContext _context
+
+@{
+    ViewData["Title"] = "Index";
+    
+    var selectedProduitId = ViewData["SelectedProduitId"];
+   
+}
+
+<h1>Index</h1>
+
+ <p>
+    @if (ViewData["SelectedProduitId"] != null)
+    {
+        
+        <a asp-action="Create" asp-route-id="@selectedProduitId">Create New</a>
+    }
+    else
+    {
+        <span>Aucun Produit associé</span>
+    }
+</p> 
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Produit
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Etape)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateSuivis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dialogue)
+            </th>
+            <th>écrit par</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        @* affichage du suivis deja existant *@
+
+        @foreach (var item in Model)
+        {
+           
+            <tr>
+                <td>
+                    @if (item.Produits != null && item.Produits.Any())
+                    {
+                        foreach (var produit in item.Produits)
+                        {
+                            <span>@produit.NumSerie</span>
+                        }
+                    }
+                    else
+                    {
+                        <span>Aucun Produit associé</span>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Etape)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateSuivis)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dialogue)
+                </td>
+                <td>
+                    @if (item.Professionnels != null && item.Professionnels.Any())
+                    {
+                        foreach (var professionnel in item.Professionnels)
+                        {
+                            <span>@Html.DisplayFor(modelItem => professionnel.Name)</span>
+                            <br />
+                        }
+                    }
+                    else
+                    {
+                        <span>Aucun professionnel associé</span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+
+       
+
+    </tbody>
+</table>

@@ -1,0 +1,71 @@
+﻿@model Guarantib.Models.Professionnel;
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<style>
+    body {
+        margin: 0; /* Remove default margin to ensure the title is at the top */
+        font-family: Arial, sans-serif; /* Added a common font for better consistency */
+    }
+
+    .centered-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* Align items at the top */
+        align-items: center;
+        height: 100vh;
+        padding-top: 20px; /* Added padding for spacing at the top */
+    }
+
+    .form-container {
+        width: 300px;
+    }
+
+    .form-group {
+        text-align: center; /* Center-align form elements */
+    }
+
+    .centered-link {
+        text-align: center; /* Center-align the link */
+    }
+</style>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <div class="centered-container">
+        <h1>Connexion</h1>
+        <br /> <br />
+        <div class="form-container">
+            <form asp-controller="Access" asp-action="Login" method="post" class="col-md-12">
+                <div class="form-group">
+                    <input type="text" placeholder="Nom" asp-for="Name" class="form-control" />
+                </div>
+                <br />
+                
+                <br />
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Se connecter</button>
+                </div>
+                <br/>
+               
+                @if (ViewData["ValidateMessage"] != null)
+                {
+                    <div class="form-group">
+                        <label>@ViewData["ValidateMessage"]</label>
+                    </div>
+                }
+                <div class="form-group centered-link">
+                    <a asp-action="Register" class="btn btn-primary">Créer un compte</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

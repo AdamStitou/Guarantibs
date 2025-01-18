@@ -1,0 +1,201 @@
+﻿@model Guarantib.Models.Produit
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<style>
+
+
+    h1, h4 {
+        text-align: center;
+    }
+    /* Ajout de styles pour centrer le formulaire */
+    .centered-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        
+
+    /* Style du conteneur principal */
+    .row {
+        margin-top: 20px;
+    }
+
+    /* Style du formulaire */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    /* Style des étiquettes */
+    .control-label {
+        font-weight: bold;
+    }
+
+    /* Style des champs de saisie avec coins arrondis */
+    .form-control {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid #FFBB3E;
+        border-radius: 5px;
+        background-color: #FFE5B7;
+    }
+
+    /* Style des boutons avec coins arrondis */
+    .btn-primary {
+        background-color: #FFBB3E;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+        .btn-primary:hover {
+            background-color: #FFA500;
+        }
+
+    /* Style du lien de retour */
+    a {
+        text-decoration: none;
+        color: #007bff;
+    }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    .form-group.form-check {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 15px;
+        background-color: #f8f9fa; /* Couleur de fond */
+        padding: 10px; /* Espacement interne */
+        border-radius: 5px; /* Coins arrondis */
+    }
+
+        .form-group.form-check label {
+            color: #007bff; /* Couleur du texte */
+        }
+
+        .form-group.form-check input {
+            margin-right: 5px;
+        }
+
+    .form-group.submit-button {
+        display: flex;
+        justify-content: center;
+    }
+
+        .form-group.submit-button input {
+            width: auto; /* Pour permettre au bouton de s'ajuster automatiquement à son contenu */
+        }
+
+    .centered-link {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px; /* Ajout d'une marge en haut pour l'espace */
+    }
+
+    .num {
+        background-color: #FFBB3E;
+        color: #100E1C;
+        text-decoration-style: solid;
+    }
+
+    
+</style>
+<h1>Modifier</h1>
+
+<h4>Produit :</h4>
+<hr />
+
+    <div class="row">
+    <div class=" centered-form">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                <label class="lab" for="SelectedClientId">Sélectionnez un client :</label>
+                    <select asp-for="SelectedClientId" class="form-control">
+                        @foreach (var client in ViewData["ClientId"] as SelectList)
+                        {
+                            <option value="@client.Value" selected="@((Model.Clients?.FirstOrDefault()?.Id.ToString() == client.Value).ToString().ToLower())">@client.Text</option>
+                        }
+                    </select>
+                </div>
+                <input type="hidden" asp-for="SelectedClientId" />
+
+                <div class="form-group">
+                    <label class="lab" for="SelectedMarqueId">Sélectionnez une marque :</label>
+                    <select asp-for="SelectedMarqueId" class="form-control">
+                        @foreach (var marque in ViewData["MarqueId"] as SelectList)
+                        {
+                            <option value="@marque.Value">@marque.Text</option>
+                        }
+                    </select>
+                </div>
+
+                <input type="hidden" asp-for="SelectedMarqueId" />
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">Nom</label>
+                    <input asp-for="Name" class="form-control"  />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Brand" class="control-label">Marque</label>
+                    <input asp-for="Brand" class="form-control" />
+                    <span asp-validation-for="Brand" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="StartDate" class="control-label">Date de création</label>
+                    <input asp-for="StartDate" class="form-control" />
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EndDate" class="control-label">Garantie le</label>
+                    <input asp-for="EndDate" class="form-control" />
+                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumFile" class="control-label">Numéro de dossier</label>
+                    <input asp-for="NumFile" class="form-control"  />
+                    <span asp-validation-for="NumFile" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumAkuito" class="control-label">Numéro Akuito</label>
+                    <input asp-for="NumAkuito" class="form-control"  />
+                    <span asp-validation-for="NumAkuito" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumSerie" class="control-label">Numéro de Série</label>
+                    <input asp-for="NumSerie" class="form-control" />
+                    <span asp-validation-for="NumSerie" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="IsClose" /> @Html.DisplayNameFor(model => model.IsClose)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

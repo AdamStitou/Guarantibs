@@ -1,0 +1,95 @@
+﻿@model Guarantib.Models.Client
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<style>
+    h1, h4 {
+        text-align: center;
+    }
+
+    /* Style du formulaire */
+    .centered-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .centered-form .col-md-4 {
+            max-width: 400px;
+        }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .control-label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid #FFBB3E;
+        border-radius: 5px;
+        background-color: #FFE5B7;
+    }
+
+    .btn-primary {
+        background-color: #FFBB3E;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .btn-primary:hover {
+        background-color: #FFA500;
+    }
+
+    .centered-link {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    /* Ajouter un style pour centrer le bouton */
+    .centered-button {
+        text-align: center;
+    }
+</style>
+
+<h1>Ajouter un Client</h1>
+
+<h4>Client</h4>
+<hr />
+
+<div class="centered-form">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Nom</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group centered-button">
+                <!-- Ajouter la classe centered-button ici -->
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="centered-link">
+    <a asp-action="Index">Retour à la liste</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

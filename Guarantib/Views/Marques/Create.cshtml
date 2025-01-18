@@ -1,0 +1,96 @@
+﻿@model Guarantib.Models.Marque
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<style>
+    h1, h4 {
+        text-align: center;
+    }
+
+    /* Style du formulaire */
+    .centered-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .centered-form .col-md-4 {
+            max-width: 400px;
+        }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .control-label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid #FFBB3E;
+        border-radius: 5px;
+        background-color: #FFE5B7;
+    }
+
+    .btn-primary {
+        background-color: #FFBB3E;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+        .btn-primary:hover {
+            background-color: #FFA500;
+        }
+
+    .centered-link {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    /* Ajouter un style pour centrer le bouton */
+    .centered-button {
+        text-align: center;
+    }
+</style>
+
+<h1>Ajouter une marque</h1>
+
+<h4>Marque</h4>
+<hr />
+<div class="centered-form">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Nom</label>
+                <input asp-for="Name" class="form-control" placeholder="Nom"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lien" class="control-label">Lien</label>
+                <input asp-for="Lien" class="form-control" placeholder="Lien" />
+                <span asp-validation-for="Lien" class="text-danger"></span>
+            </div>
+            <div class="centered-button">
+                <input type="submit" value="Ajoutez" class="btn btn-primary " />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Retour</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

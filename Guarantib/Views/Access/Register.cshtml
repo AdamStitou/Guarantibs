@@ -1,0 +1,40 @@
+﻿@model Guarantib.Models.Professionnel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>Register</h1>
+
+<h4>Professionnel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Register">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Nom</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="job" class="control-label">Votre emploie</label>
+                <input asp-for="job" class="form-control" />
+                <span asp-validation-for="job" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="KeepLoggedIn" /> @Html.DisplayNameFor(model => model.KeepLoggedIn)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="S'enregistrer'" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Retour à la liste</a>
+</div>
+
